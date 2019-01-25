@@ -12,11 +12,16 @@ export class NewsService {
     this.toastr.show('Hello World!', 'Toast fun');
   }
 
-  showNewsMsg(headline: string, txt: string) {
-    console.log('getscalled');
-    this.toastr.show(txt, headline, {
+  showNewsMsg(title: string, txt: string) {
+    this.toastr.show(txt, title, {
       disableTimeOut: true,
       toastClass: 'toast news-toast'
+    });
+  }
+
+  showErrorMsg(title: string, txt: string) {
+    this.toastr.error(txt, title, {
+      timeOut: 1000,
     });
   }
 }

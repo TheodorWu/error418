@@ -14,6 +14,7 @@ export class AppComponent {
 
   showToast() {
     this.news.showNewsMsg('The Content', 'The Title');
+    this.news.showErrorMsg('U made a mistake', 'Dumbass');
   }
 
 
