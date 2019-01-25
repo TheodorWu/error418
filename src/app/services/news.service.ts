@@ -14,8 +14,9 @@ export class NewsService {
 
   showNewsMsg(headline: string, txt: string) {
     console.log('getscalled');
-    this.toastr.info(txt, headline, {
-      disableTimeOut: true
+    this.toastr.show(txt, headline, {
+      disableTimeOut: true,
+      toastClass: 'toast news-toast'
     });
   }
 }
