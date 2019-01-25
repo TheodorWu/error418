@@ -8,6 +8,7 @@ import { StoryComponent } from './story/story.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LevelModule } from './level/level.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    LevelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

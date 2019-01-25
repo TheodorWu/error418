@@ -7,6 +7,8 @@ import { LoadingComponent } from './loading/loading.component';
   declarations: [AgbComponent, LoadingComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:
+  [AgbComponent],
 })
 export class LevelModule { }
