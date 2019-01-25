@@ -21,10 +21,12 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    AppRoutingModule,
-    LevelModule,
     MatButtonModule,
+    LevelModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

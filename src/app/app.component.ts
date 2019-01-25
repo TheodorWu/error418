@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { NewsService } from './services/news.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,11 @@ import { ToastrService } from 'ngx-toastr';
 export class AppComponent {
   title = 'error418';
 
-  constructor(private toastr: ToastrService) {  }
+  constructor(private news: NewsService) {  }
 
   showToast() {
-    this.toastr.success('Hello World!', 'Toast fun');
+    this.news.showNewsMsg('The Content', 'The Title');
+    this.news.showErrorMsg('U made a mistake', 'Dumbass');
   }
 
 
