@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LevelModule } from './level/level.module';
 
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LevelModule } from './level/level.module';
     ToastrModule.forRoot(),
     AppRoutingModule,
     LevelModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
