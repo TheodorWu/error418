@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { NewsComponent } from './news/news.component';
 import { StoryComponent } from './story/story.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,6 +18,8 @@ import { StoryComponent } from './story/story.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],
