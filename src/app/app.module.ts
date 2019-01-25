@@ -28,6 +28,7 @@ import { MaterialModule } from './material.module';
     }),
     AppRoutingModule
   ],
+  entryComponents: [StoryDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
