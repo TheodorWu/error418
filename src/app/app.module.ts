@@ -19,7 +19,9 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
     AppRoutingModule
   ],
   providers: [],
