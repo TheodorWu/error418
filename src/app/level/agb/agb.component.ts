@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgbComponent implements OnInit {
 
-  time:  number = 0;
+  time: number = 0;
   interval;
 
   constructor() { }
@@ -23,6 +23,7 @@ export class AgbComponent implements OnInit {
   }
 
   pauseTimer() {
+    console.log(this.time);
     clearInterval(this.interval);
   }
 }
