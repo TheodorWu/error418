@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 #toast-container > div {
@@ -48,4 +50,11 @@
 
 .margin-top4em {
   margin-top: 4em !important;
+}
+
+.story-panel {
+  mat-dialog-container {
+    background-color: rgb(110, 110, 110);
+    color: #f4f4f4;
+  }
 }

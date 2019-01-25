@@ -4,30 +4,31 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewsComponent } from './news/news.component';
-import { StoryComponent } from './story/story.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LevelModule } from './level/level.module';
 
-import { MatButtonModule } from '@angular/material/button';
+import { StoryDialogComponent } from './story-dialog/story-dialog.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewsComponent,
-    StoryComponent
+    StoryDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule,
+    MaterialModule,
     LevelModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
     AppRoutingModule
   ],
+  entryComponents: [StoryDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
