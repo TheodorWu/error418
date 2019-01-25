@@ -13,6 +13,7 @@ export class AgbComponent implements OnInit {
   private interval;
 
   private disableAccept: boolean = true;
+  private movedCancel: boolean = false;
 
   constructor(private news: NewsService,
               private router: Router) { }
@@ -38,7 +39,11 @@ export class AgbComponent implements OnInit {
     clearInterval(this.interval);
   }
 
-  evalTime() {
+  cancelClick() {
+    this.movedCancel = !this.movedCancel;
+  }
+
+  acceptClick() {
     switch(true) {
       case (this.time < 2): {
         this.news.showErrorMsg("","You broke the sound barrier!");
