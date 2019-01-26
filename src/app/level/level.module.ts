@@ -10,6 +10,7 @@ import { DownloadsComponent } from './downloads/downloads.component';
 import { CertificateComponent } from './certificate/certificate.component';
 import { HomeComponent } from './home/home.component';
 import { TeapotComponent } from './teapot/teapot.component';
+import { CookiesComponent } from './cookies/cookies.component';
 
 @NgModule({
   declarations: [AgbComponent,
@@ -20,7 +21,8 @@ import { TeapotComponent } from './teapot/teapot.component';
     DownloadsComponent,
     CertificateComponent,
     HomeComponent,
-    TeapotComponent],
+    TeapotComponent,
+    CookiesComponent],
   imports: [
     CommonModule,
     MaterialModule,
