@@ -6,9 +6,10 @@ import { LanguageComponent } from './language/language.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MaterialModule } from '../material.module';
 import { DownloadsComponent } from './downloads/downloads.component';
+import { CertificateComponent } from './certificate/certificate.component';
 
 @NgModule({
-  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent, DownloadsComponent],
+  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent, DownloadsComponent, CertificateComponent],
   imports: [
     CommonModule,
     MaterialModule,
