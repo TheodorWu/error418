@@ -55,8 +55,8 @@ export class CertificateComponent implements AfterViewInit {
   ctx;
   lastTick;
 
-  lost;
-  win;
+  lost: boolean = false;
+  win: boolean = false;
 
   enemies;
   spawnTimer;
@@ -70,7 +70,7 @@ export class CertificateComponent implements AfterViewInit {
   certLeft;
   certRight;
   certBottom;
-  health;
+  health: number = 100;
   progress;
   time;
 
