@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
+import { environment } from 'src/environments/environment';
+
 
 const FRICTION = 0.00015;
 const GRAVITY = 0.0025;
@@ -65,6 +67,7 @@ export class CookiesComponent implements OnInit {
   bin;
   score;
 
+
   constructor(private story: StoryService) {}
 
   ngOnInit() {
@@ -84,10 +87,10 @@ export class CookiesComponent implements OnInit {
     this.ctx.imageSmoothingQuality = 'low';
     this.ctx.imageSmoothingEnabled = false;
 
-    this.loadImage('res/cookie.png');
-    this.loadImage('res/player.png');
-    this.loadImage('res/bin_back.png');
-    this.loadImage('res/bin_front.png');
+    this.loadImage(`${environment.deployUrl}assets/img/cookies/cookie.png`);
+    this.loadImage(`${environment.deployUrl}assets/img/cookies/player.png`);
+    this.loadImage(`${environment.deployUrl}assets/img/cookies/bin_back.png`);
+    this.loadImage(`${environment.deployUrl}assets/img/cookies/bin_front.png`);
     this.resize();
 
     this.player = {
@@ -108,12 +111,12 @@ export class CookiesComponent implements OnInit {
     const declineButton = document.getElementById('decline');
     const headerStyle = window.getComputedStyle(header);
 
-    window.addEventListener('resize', this.resize);
-    window.addEventListener('keydown', this.keydown);
-    window.addEventListener('keyup', this.keyup);
-    window.addEventListener('mousedown', this.mousedown);
-    window.addEventListener('mouseup', this.mouseup);
-    window.addEventListener('mousemove', this.mousemove);
+    window.addEventListener('resize', () => this.resize());
+    window.addEventListener('keydown', (ev) => this.keydown(ev));
+    window.addEventListener('keyup', (ev) => this.keyup(ev));
+    window.addEventListener('mousedown', (ev) => this.mousedown(ev));
+    window.addEventListener('mouseup', (ev) => this.mouseup(ev));
+    window.addEventListener('mousemove', (ev) => this.mousemove(ev));
     acceptButton.addEventListener('click', () => {
       for (let i = 0; i < COOKIE_COUNT; i++) {
         let cookieX = 0;
@@ -127,15 +130,15 @@ export class CookiesComponent implements OnInit {
         }, RANDOM_DELAY_FACTOR * Math.random());
       }
 
-      acceptButton.disabled = true;
+      // acceptButton.disabled = true;
       header.style.top = '-' + headerStyle.height;
 
       setTimeout(() => {
-        acceptButton.disabled = false;
+        // acceptButton.disabled = false;
         header.style.top = '0';
       }, ACCEPT_FREQUENCY);
     });
-    declineButton.disabled = true;
+    // declineButton.disabled = true;
     declineButton.addEventListener('click', () => {
       window.location.replace('about:blank'); // TODO Use proper URL
     });
@@ -256,7 +259,7 @@ export class CookiesComponent implements OnInit {
           this.randomizeBin();
 
           if (this.score <= 0) {
-            document.getElementById('decline').disabled = false;
+            // document.getElementById('decline').disabled = false;
             this.score = 0;
           }
         }
