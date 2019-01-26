@@ -74,6 +74,12 @@ html{
   padding: 1em;
 }
 
+.front {
+    z-index: 3;
+    position: absolute;
+    background-color:rgba(0, 0, 0, 0.2);
+}
+
 // Alles für die Healthbar
 $progressBarColour: grey;
 $progressValueColour: yellowgreen;

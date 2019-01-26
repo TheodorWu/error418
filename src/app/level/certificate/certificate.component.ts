@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 const PROGRESS_SPEED = 0.01;
 const START_SPAWN_FREQUENCY = 400;
 const END_SPAWN_FREQUENCY = 50;
-const START_HEALTH = 100;
+const START_HEALTH = 10;
 const ENEMY_DATA = [];
 const ENEMY_COLOR_SATURATION = 180;
 const TIMEUP = 45000;
@@ -130,6 +130,12 @@ export class CertificateComponent implements AfterViewInit {
 
       if(this.time > TIMEUP && !this.lost){
         this.win = true;
+        this.drag = false;
+        return true;
+      }
+
+      if(this.lost){
+        return true;
       }
 
       requestAnimationFrame(() => this.loop());
@@ -148,6 +154,7 @@ export class CertificateComponent implements AfterViewInit {
 
           if (this.health <= 0) {
             this.health = 0;
+            this.drag = false;
             this.lost = true;
           }
 
@@ -271,7 +278,22 @@ export class CertificateComponent implements AfterViewInit {
     }
 
     restart() {
-      location.reload();
+      this.win = false;
+      this.lost = false;
+      this.health = START_HEALTH;
+
+      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+      this.lastTick = Date.now();
+      this.progress = 0;
+      this.time = 0;
+      this.enemies = [];
+      this.spawnTimer = 0;
+
+      this.cert.src = '../../../assets/img/certificate.png';
+
+      this.resize();
+
+      requestAnimationFrame(() => { this.loop(); });
     }
 
     continue() {
