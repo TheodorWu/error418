@@ -1,3 +1,9 @@
-<p>
-  certificate works!
-</p>
+<div *ngIf="!lost && !win" class="canvas-div">
+  <canvas id="canvas" (onmousedown)="handleMouseDown($event)" (onmouseup)="handleMouseDown()" (onmousemove)="handleMouseMove($event)"></canvas>
+</div>
+<div *ngIf="lost">
+  <button class="button" (click)="restart()">Try again?</button>
+</div>
+<div *ngIf="win">
+  <button class="button" (click)="continue()">Continue</button>
+</div>

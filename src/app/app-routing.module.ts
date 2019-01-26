@@ -5,6 +5,7 @@ import { AgbComponent } from './level/agb/agb.component';
 import { NotfoundComponent } from './level/notfound/notfound.component';
 import { LoadingComponent } from './level/loading/loading.component';
 import { DownloadsComponent } from './level/downloads/downloads.component';
+import { CertificateComponent } from './level/certificate/certificate.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: '404', component: NotfoundComponent },
   { path: 'loading', component: LoadingComponent },
   { path: 'downloads', component: DownloadsComponent },
+  { path: 'certificate', component: CertificateComponent },
 ];
 
 @NgModule({
