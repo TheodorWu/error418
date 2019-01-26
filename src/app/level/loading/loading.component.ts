@@ -131,7 +131,9 @@ export class LoadingComponent implements AfterViewInit {
 
     this.tickSpawner(delta);
     this.tickEnemies(delta);
-    this.tickBar(delta);
+    if (this.tickBar(delta)) {
+      return 0;
+    }
 
     this.lastTick = now;
 
@@ -146,7 +148,7 @@ export class LoadingComponent implements AfterViewInit {
     }
   }
 
-  tickBar(delta) {
+  tickBar(delta): boolean {
     const progressWidth =
       ((this.progressBarWidth + this.progressBarHeight / PROGRESS_RIGHT_EDGE_ANGLE) *
       this.progress) /
@@ -159,7 +161,8 @@ export class LoadingComponent implements AfterViewInit {
       this.progress = 100;
 
       // TODO Use proper URL DONE
-      this.router.navigate(['/home']);
+      this.story.openNextStoryMsg();
+      return true;
     }
 
     this.ctx.fillStyle = PROGRESS_COLOR;

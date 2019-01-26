@@ -1,3 +1,13 @@
-<p>
-  certificate works!
-</p>
+<div *ngIf="lost" class="full-size text-center front">
+  <button class="button" (click)="restart()">Try again?</button>
+</div>
+<div *ngIf="win" class="full-size text-center front">
+  <button class="button" (click)="continue()">Continue</button>
+</div>
+<div class="canvas-div" id="canvas-container">
+  <div class="hud noselect full-size">
+    <progress class="healthbar" [value]="health" max="100">{{health}}/100</progress>
+    <label class="timer"> Time left: {{(45000-time)/1000 | number:'1.0-0'}}s</label>
+  </div>
+  <canvas id="canvas" (mousedown)="handleMouseDown($event)" (mouseup)="handleMouseUp()" (document:mousemove)="handleMouseMove($event)"></canvas>
+</div>

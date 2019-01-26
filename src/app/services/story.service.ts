@@ -9,31 +9,30 @@ import { Observable } from 'rxjs';
 })
 export class StoryService {
 
-  msgCounter = 3;
+  msgCounter = 0;
   dialogIsOpen = false;
 
   constructor(
     public dialog: MatDialog,
     private router: Router) { }
 
-  openStoryMsg(id: number) {
-    const dialogRef = this.dialog.open(StoryDialogComponent, {
-      width: '90%',
-      height: '90%',
-      disableClose: true,
-      panelClass: 'story-panel',
-      data: STORY_TXT.find(txt => txt.num === id).content
-    });
-    this.msgCounter = id;
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
+  // openStoryMsg(id: number) {
+  //   const dialogRef = this.dialog.open(StoryDialogComponent, {
+  //     width: '90%',
+  //     height: '90%',
+  //     disableClose: true,
+  //     panelClass: 'story-panel',
+  //     data: STORY_TXT.find(txt => txt.num === id).content
+  //   });
+  //   this.msgCounter = id;
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //   });
+  // }
 
   openNextStoryMsg(): Observable<any> {
-
-
     const storyElm = STORY_TXT.find(txt => txt.num === this.msgCounter);
+    console.log(this.msgCounter);
 
     const dialogRef = this.dialog.open(StoryDialogComponent, {
       width: '90%',
@@ -53,5 +52,9 @@ export class StoryService {
     });
 
     return dialogRef.afterClosed();
+  }
+
+  isCompleted(): boolean {
+    return STORY_TXT.pop().num <= this.msgCounter;
   }
 }
