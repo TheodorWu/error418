@@ -12,7 +12,6 @@ import { TeapotComponent } from './level/teapot/teapot.component';
 import { CookiesComponent } from './level/cookies/cookies.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
   { path: 'agb', component: AgbComponent },
   { path: '404', component: NotfoundComponent },
   { path: 'loading', component: LoadingComponent },
