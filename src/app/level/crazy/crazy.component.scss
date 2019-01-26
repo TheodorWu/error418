@@ -1,0 +1,86 @@
+* {
+	z-index: 3;
+}
+
+body {
+	background-image: url("res/background.jpg");
+	font-family: "Comic Sans MS";
+	cursor: not-allowed;
+}
+
+.red {
+	color: red;
+}
+
+.big-yellow {
+	font-size: 15pt;
+	font-weight: bold;
+	color: yellow;
+}
+
+.big {
+	font-size: 50pt;
+}
+
+.hover-scale:hover {
+	transform: scale(1.5);
+}
+
+.right {
+	float: right;
+}
+
+.key {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	left: 300px;
+	top: 150px;
+	cursor: pointer;
+}
+
+.fill {
+	height: 500px;
+}
+
+.center {
+	text-align: center;
+}
+
+.small-margin {
+	margin: 10px;
+}
+
+#door-wrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 250px;
+	background-color: black;
+}
+
+#door-wrapper img {
+	margin: 25px;
+	object-fit: contain;
+}
+
+.anti-link {
+	text-decoration: none;
+	color: inherit;
+}
+
+.block {
+	display: block;
+}
+
+.margin-top {
+	margin-top: 150px;
+}
+
+.margin-left {
+	margin-left: 65vw;
+}
+
+.inline {
+	display: inline;
+}

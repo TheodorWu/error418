@@ -11,6 +11,7 @@ import { CertificateComponent } from './certificate/certificate.component';
 import { HomeComponent } from './home/home.component';
 import { TeapotComponent } from './teapot/teapot.component';
 import { CookiesComponent } from './cookies/cookies.component';
+import { CrazyComponent } from './crazy/crazy.component';
 
 @NgModule({
   declarations: [AgbComponent,
@@ -22,7 +23,8 @@ import { CookiesComponent } from './cookies/cookies.component';
     CertificateComponent,
     HomeComponent,
     TeapotComponent,
-    CookiesComponent],
+    CookiesComponent,
+    CrazyComponent],
   imports: [
     CommonModule,
     MaterialModule,
