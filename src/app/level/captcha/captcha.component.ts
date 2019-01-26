@@ -17,7 +17,8 @@ export class CaptchaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentCaptcha = new CaptchaModel(CAPTCHAS[0].task, CAPTCHAS[0].assets.map((captcha) => CaptchaAsset.copyCaptchaAsset(captcha)));
+    // tslint:disable-next-line:max-line-length
+    this.currentCaptcha = new CaptchaModel(CAPTCHAS[0].task, CAPTCHAS[0].subtask, CAPTCHAS[0].assets.map((captcha) => CaptchaAsset.copyCaptchaAsset(captcha)));
     const copiedArray = this.currentCaptcha.assets.map((captcha) => CaptchaAsset.copyCaptchaAsset(captcha));
     this.currentCaptcha.assets = this.shuffle(this.currentCaptcha.assets.concat(copiedArray));
   }

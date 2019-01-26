@@ -1,6 +1,13 @@
 <div class="container">
   <mat-card>
-    <mat-card-header> </mat-card-header>
+    <mat-card-header>
+      <mat-card-title>
+        {{ currentCaptcha.task }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ currentCaptcha.subtask }}
+      </mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
       <div class="captcha-container">
 

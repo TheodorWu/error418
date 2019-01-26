@@ -22,17 +22,20 @@ export class CaptchaAsset {
 
 export class CaptchaModel {
   task: string;
+  subtask: string;
   assets: Array<CaptchaAsset>;
 
-  constructor(task: string, assets: Array<CaptchaAsset>) {
+
+  constructor(task: string, subtask: string, assets: Array<CaptchaAsset>) {
     this.assets = assets;
     this.task = task;
+    this.subtask = subtask;
   }
 
 }
 
 export const CAPTCHAS: Array<CaptchaModel> = [
-  new CaptchaModel('Find all cars!', [
+  new CaptchaModel('Find all Car Pairs', 'Please verify that your Human by solving this Captcha', [
     new CaptchaAsset(1),
     new CaptchaAsset(2),
     new CaptchaAsset(3),
