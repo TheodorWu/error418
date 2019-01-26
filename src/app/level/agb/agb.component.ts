@@ -35,7 +35,7 @@ export class AgbComponent implements OnInit {
   startTimer() {
     this.interval = setInterval(() => {
       this.time++;
-    },1000)
+    },100)
   }
 
   pauseTimer() {
