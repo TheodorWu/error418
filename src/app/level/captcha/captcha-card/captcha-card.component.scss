@@ -1,0 +1,28 @@
+.card-asset {
+  width: 100px;
+  height: 100px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+.card-asset.flipped {
+}
+.card-asset img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-asset .back {
+  background: blue;
+  transform: rotateY( 0deg );
+}
+.card-asset .front {
+  background: blue;
+  transform: rotateY( 180deg );
+}
+
+.blue {
+  background-color: black;
+}

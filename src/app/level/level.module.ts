@@ -5,9 +5,11 @@ import { LoadingComponent } from './loading/loading.component';
 import { LanguageComponent } from './language/language.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MaterialModule } from '../material.module';
+import { CaptchaComponent } from './captcha/captcha.component';
+import { CaptchaCardComponent } from './captcha/captcha-card/captcha-card.component';
 
 @NgModule({
-  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent],
+  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent, CaptchaComponent, CaptchaCardComponent],
   imports: [
     CommonModule,
     MaterialModule,
