@@ -1,0 +1,22 @@
+.container {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 70vw;
+  height: 80vh;
+}
+
+.scroll-box {
+  height: 10em;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  overflow-y: scroll;
+}
+
+.row-container{
+  display: flex;
+  flex-direction: row;
+}
