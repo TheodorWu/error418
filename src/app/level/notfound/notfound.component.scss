@@ -1,5 +1,23 @@
 .radial-gradient {
-  height:100%;
-  width:100%;
+  height:100vh;
+  width:100vw;
+  color: black;
   background: black;
+  position: relative;
+  text-align: center;
+  padding-top: 20em;
+}
+
+.button {
+  height: 2em;
+  width: 4em;
+  color: black;
+  background-color: black;
+  bottom: 0;
+  right: 0;
+  &:hover {
+    background-color: lightgrey;
+    border-color: grey;
+    border-radius: 0.2em;
+  }
 }
