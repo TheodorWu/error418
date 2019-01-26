@@ -6,6 +6,7 @@ export class CaptchaAsset {
   path: string;
   flippedPath: string;
   flipped: boolean;
+  partnerFound = false;
 
   constructor(id: number) {
     this.id = id;

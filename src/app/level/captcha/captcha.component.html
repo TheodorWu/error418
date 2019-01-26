@@ -15,8 +15,8 @@
       </div>
     </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button class="button" disabled="isSolved()">Next</button>
+    <mat-card-actions style="text-align: right;">
+      <button class="button" [disabled]="isSolved()" (click)="next()">DONE!</button>
     </mat-card-actions>
   </mat-card>
 </div>

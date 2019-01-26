@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CaptchaModel, CAPTCHAS, CaptchaAsset } from './captcha.model';
 import { NewsService } from 'src/app/services/news.service';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-captcha',
@@ -12,7 +13,7 @@ export class CaptchaComponent implements OnInit {
   currentCaptcha: CaptchaModel;
   currentlyRevealed: Array<CaptchaAsset> = [];
 
-  constructor(private msgService: NewsService) {
+  constructor(private msgService: NewsService, private story: StoryService) {
   }
 
   ngOnInit() {
@@ -22,10 +23,18 @@ export class CaptchaComponent implements OnInit {
   }
 
   isSolved(): boolean {
-    return false;
+    let result = true;
+    this.currentCaptcha.assets.forEach(element => {
+      result = result && element.partnerFound;
+    });
+    return !result;
   }
 
   flip(captcha: CaptchaAsset, index: number) {
+    if (captcha.partnerFound) {
+      this.msgService.showErrorMsg('Already Solved', 'Why would you try that one again ?');
+    } else {
+
       if (captcha.flipped) {
         document.getElementById('Card' + index).setAttribute('style', 'transform: rotateY( 0deg );');
         const idx = this.currentlyRevealed.indexOf(captcha);
@@ -41,14 +50,15 @@ export class CaptchaComponent implements OnInit {
           if (this.currentlyRevealed.length === 2) {
             if (this.currentlyRevealed[0].id === this.currentlyRevealed[1].id) {
               this.msgService.showErrorMsg('You Got a Pair', 'Congratulations...');
+              this.currentlyRevealed[0].partnerFound = true;
+              this.currentlyRevealed[1].partnerFound = true;
               this.currentlyRevealed = [];
             }
           }
         }
       }
       captcha.flipped = !captcha.flipped;
-      console.log(this.currentlyRevealed);
-
+    }
   }
 
   shuffle(array) {
@@ -64,5 +74,9 @@ export class CaptchaComponent implements OnInit {
 
     return array;
 }
+
+  next() {
+    this.story.openNextStoryMsg();
+  }
 
 }
