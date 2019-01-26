@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-cookies',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CookiesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private story: StoryService) { }
 
   ngOnInit() {
+  }
+
+  next() {
+    this.story.openNextStoryMsg();
   }
 
 }
