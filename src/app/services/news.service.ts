@@ -21,7 +21,7 @@ export class NewsService {
 
   showErrorMsg(title: string, txt: string) {
     this.toastr.error(txt, title, {
-      timeOut: 1000,
+      timeOut: 3000,
     });
   }
 }
