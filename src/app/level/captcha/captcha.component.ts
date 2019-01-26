@@ -33,7 +33,7 @@ export class CaptchaComponent implements OnInit {
 
   flip(captcha: CaptchaAsset, index: number) {
     if (captcha.partnerFound) {
-      this.msgService.showErrorMsg('Already Solved', 'Why would you try that one again ?');
+      this.msgService.showPositiveMsg('Already Solved', 'Why would you try that one again ?');
     } else {
 
       if (captcha.flipped) {
@@ -50,7 +50,7 @@ export class CaptchaComponent implements OnInit {
           this.currentlyRevealed.push(captcha);
           if (this.currentlyRevealed.length === 2) {
             if (this.currentlyRevealed[0].id === this.currentlyRevealed[1].id) {
-              this.msgService.showErrorMsg('You Got a Pair', 'Congratulations...');
+              this.msgService.showPositiveMsg('You Got a Pair', 'Congratulations...');
               this.currentlyRevealed[0].partnerFound = true;
               this.currentlyRevealed[1].partnerFound = true;
               this.currentlyRevealed = [];

@@ -20,7 +20,7 @@ export class NewsService {
   }
 
   showPositiveMsg(title: string, txt: string) {
-    this.toastr.info(txt, title, {
+    this.toastr.success(txt, title, {
       timeOut: 3000,
     });
   }
