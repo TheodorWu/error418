@@ -1,5 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { StoryService } from 'src/app/services/story.service';
+import { Router } from '@angular/router';
 
 const PROGRESS_BAR_WIDTH_DIVIDER = 2.5;
 const PROGRESS_BAR_HEIGHT_DIVIDER = 6.5;
@@ -69,7 +71,9 @@ export class LoadingComponent implements AfterViewInit {
   enemies;
   spawnTimer;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private story: StoryService) {}
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas');
@@ -154,8 +158,8 @@ export class LoadingComponent implements AfterViewInit {
     } else {
       this.progress = 100;
 
-      // TODO Use proper URL
-      window.location.replace('about:blank');
+      // TODO Use proper URL DONE
+      this.router.navigate(['/home']);
     }
 
     this.ctx.fillStyle = PROGRESS_COLOR;

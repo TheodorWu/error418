@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
 import { Router } from '@angular/router';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-agb',
@@ -16,9 +17,11 @@ export class AgbComponent implements OnInit {
   private movedCancel: boolean = false;
 
   constructor(private news: NewsService,
-              private router: Router) { }
+              private router: Router,
+              private story: StoryService) { }
 
   ngOnInit() {
+    this.story.openNextStoryMsg();
     this.startTimer();
   }
 
