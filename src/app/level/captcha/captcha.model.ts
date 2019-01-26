@@ -9,7 +9,7 @@ export class CaptchaAsset {
 
   constructor(id: number) {
     this.id = id;
-    this.path = `${environment.deployUrl}assets/captchas/Asset${id}.png`;
+    this.path = `${environment.deployUrl}assets/img/car${id}.png`;
     this.flippedPath = `${environment.deployUrl}assets/captchas/AssetFlipped.png`;
     this.flipped = false;
   }
@@ -33,5 +33,14 @@ export class CaptchaModel {
 export const CAPTCHAS: Array<CaptchaModel> = [
   new CaptchaModel('Find all cars!', [
     new CaptchaAsset(1),
+    new CaptchaAsset(2),
+    new CaptchaAsset(3),
+    new CaptchaAsset(4),
+    new CaptchaAsset(5),
+    new CaptchaAsset(6),
+    new CaptchaAsset(7),
+    new CaptchaAsset(8),
+    new CaptchaAsset(9),
+    new CaptchaAsset(10),
   ]),
 ];

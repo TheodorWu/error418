@@ -12,7 +12,7 @@ export class CaptchaComponent implements OnInit {
   currentCaptcha: CaptchaModel;
   currentlyRevealed: Array<CaptchaAsset> = [];
 
-  constructor(private errorService: NewsService) {
+  constructor(private msgService: NewsService) {
   }
 
   ngOnInit() {
@@ -33,13 +33,14 @@ export class CaptchaComponent implements OnInit {
           this.currentlyRevealed.splice(idx, 1);
         }
       } else {
-        if (this.currentlyRevealed.length > 2) {
-          this.errorService.showErrorMsg('Action not Allowed', 'You have already revealed two Cards');
+        if (this.currentlyRevealed.length >= 2) {
+          this.msgService.showErrorMsg('Action not Allowed', 'You have already revealed two Cards');
         } else {
           document.getElementById('Card' + index).setAttribute('style', 'transform: rotateY( 180deg );');
           this.currentlyRevealed.push(captcha);
           if (this.currentlyRevealed.length === 2) {
             if (this.currentlyRevealed[0].id === this.currentlyRevealed[1].id) {
+              this.msgService.showErrorMsg('You Got a Pair', 'Congratulations...');
               this.currentlyRevealed = [];
             }
           }

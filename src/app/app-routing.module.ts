@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'agb', component: AgbComponent },
   { path: '404', component: NotfoundComponent },
   { path: 'loading', component: LoadingComponent },
-  { path: 'captcha', component: CaptchaComponent }
+  { path: 'captcha', component: CaptchaComponent },
   { path: 'downloads', component: DownloadsComponent },
 ];
 

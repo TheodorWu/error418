@@ -6,13 +6,17 @@ import { LanguageComponent } from './language/language.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MaterialModule } from '../material.module';
 import { CaptchaComponent } from './captcha/captcha.component';
-import { CaptchaCardComponent } from './captcha/captcha-card/captcha-card.component';
 import { DownloadsComponent } from './downloads/downloads.component';
 import { CertificateComponent } from './certificate/certificate.component';
 
 @NgModule({
-  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent, CaptchaComponent, CaptchaCardComponent],
-  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent, DownloadsComponent, CertificateComponent],
+  declarations: [AgbComponent,
+    LoadingComponent,
+    LanguageComponent,
+    NotfoundComponent,
+    CaptchaComponent,
+    DownloadsComponent,
+    CertificateComponent],
   imports: [
     CommonModule,
     MaterialModule,
