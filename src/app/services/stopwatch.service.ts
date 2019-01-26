@@ -29,7 +29,7 @@ export class StopwatchService {
 
   stop() {
     return (
-      'It took you: ' +
+      'It took you ' +
       this.minutes +
       ' minutes and ' +
       this.seconds +
