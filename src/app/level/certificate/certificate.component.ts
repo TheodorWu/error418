@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 const PROGRESS_SPEED = 0.01;
 const START_SPAWN_FREQUENCY = 400;
 const END_SPAWN_FREQUENCY = 50;
-const START_HEALTH = 10;
+const START_HEALTH = 100;
 const ENEMY_DATA = [];
 const ENEMY_COLOR_SATURATION = 180;
 const TIMEUP = 45000;
