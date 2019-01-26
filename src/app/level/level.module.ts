@@ -5,9 +5,10 @@ import { LoadingComponent } from './loading/loading.component';
 import { LanguageComponent } from './language/language.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MaterialModule } from '../material.module';
+import { DownloadsComponent } from './downloads/downloads.component';
 
 @NgModule({
-  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent],
+  declarations: [AgbComponent, LoadingComponent, LanguageComponent, NotfoundComponent, DownloadsComponent],
   imports: [
     CommonModule,
     MaterialModule,
