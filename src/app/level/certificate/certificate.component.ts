@@ -297,7 +297,7 @@ export class CertificateComponent implements AfterViewInit {
     }
 
     continue() {
-      // TODO:
+      this.story.openNextStoryMsg();
     }
 
     fillCircle(ctx, x, y, width, height) {
