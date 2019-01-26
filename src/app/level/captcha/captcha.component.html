@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{ currentCaptcha.task }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ currentCaptcha.subtask }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="captcha-container">
+
+        <div
+        *ngFor="let card of currentCaptcha.assets; let i = index"
+        class="card-asset"
+        id="Card{{ i }}"
+        (click)="flip(card, i)"
+        >
+        <img class="front" src="{{ card.path }}" />
+        <img class="back" src="{{ card.flippedPath }}" />
+      </div>
+    </div>
+    </mat-card-content>
+    <mat-card-actions style="text-align: right;">
+      <button class="button" [disabled]="isSolved()" (click)="next()">DONE!</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

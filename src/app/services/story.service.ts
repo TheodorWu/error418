@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class StoryService {
 
-  msgCounter = 0;
+  msgCounter = 5;
   dialogIsOpen = false;
 
   constructor(
@@ -53,5 +53,9 @@ export class StoryService {
     });
 
     return dialogRef.afterClosed();
+  }
+
+  isCompleted(): boolean {
+    return STORY_TXT.pop().num === this.msgCounter;
   }
 }
