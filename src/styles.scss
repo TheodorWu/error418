@@ -7,13 +7,19 @@ html{
 }
 
 #toast-container > div {
-    opacity:1;
+  opacity:1;
 }
 
 .full-size {
   width: 100%;
   height: 100%;
 }
+
+.text-center {
+  text-align: center;
+  padding: 15em;
+}
+
 
 .news-toast {
   background-color: rgb(110, 110, 110) !important;
@@ -43,6 +49,63 @@ html{
     background-color: white;
     color: lightgrey;
   }
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  supported by Chrome and Opera */
+}
+
+.hud {
+  z-index: -1;
+  position: absolute;
+  background-color: transparent !important;
+  padding: 1em;
+}
+
+.front {
+    z-index: 3;
+    position: absolute;
+    background-color:rgba(0, 0, 0, 0.2);
+}
+
+// Alles für die Healthbar
+$progressBarColour: grey;
+$progressValueColour: yellowgreen;
+
+.healthbar {
+  background-color: $progressBarColour; /*This could be any colour*/
+  width: 50%;
+  height: 1.5em;
+  margin-top: 0.75em;
+}
+/*For firefox*/
+.healthbar::-moz-progress-bar {
+  background: $progressValueColour;
+}
+/*For webkit browsers*/
+.healthbar::-webkit-progress-bar {
+  background: $progressBarColour;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
+.healthbar::-webkit-progress-value {
+  background: $progressValueColour;
+}
+/*For IE*/
+.healthbar::-ms-fill {
+  background: $progressValueColour;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.timer {
+  font-weight: bold;
+  margin-left: 1.5em;
+  font-size: 1.5em;
 }
 
 .margin-top4em {

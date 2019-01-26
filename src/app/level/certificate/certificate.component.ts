@@ -3,25 +3,27 @@ import { HostListener } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { Router } from '@angular/router';
 
-const PROGRESS_SPEED = 0.003;
-const START_SPAWN_FREQUENCY = 1850;
+const PROGRESS_SPEED = 0.01;
+const START_SPAWN_FREQUENCY = 400;
+const END_SPAWN_FREQUENCY = 50;
 const START_HEALTH = 100;
-const END_SPAWN_FREQUENCY = 500;
 const ENEMY_DATA = [];
 const ENEMY_COLOR_SATURATION = 180;
-const TIMEUP = 10000;
+const TIMEUP = 45000;
 
 class Enemy {
   x;
   y;
+  angle;
   width;
   height;
   speed;
   damage;
 
-  constructor(x, y, width, height, speed, damage) {
+  constructor(x, y, angle, width, height, speed, damage) {
     this.x = x;
     this.y = y;
+    this.angle = angle;
     this.width = width;
     this.height = height;
     this.speed = speed;
@@ -53,8 +55,8 @@ export class CertificateComponent implements AfterViewInit {
   ctx;
   lastTick;
 
-  lost;
-  win;
+  lost: boolean = false;
+  win: boolean = false;
 
   enemies;
   spawnTimer;
@@ -68,14 +70,13 @@ export class CertificateComponent implements AfterViewInit {
   certLeft;
   certRight;
   certBottom;
-  health;
+  health: number = 100;
   progress;
   time;
 
   drag;
   lastMouseX;
   lastMouseY;
-
 
   constructor(
     private router: Router,
@@ -104,8 +105,6 @@ export class CertificateComponent implements AfterViewInit {
 
       this.resize();
 
-      this.drawCert(this.ctx, this.cert, this.certX, this.certY);
-
       window.addEventListener('resize', this.resize);
 
       ENEMY_DATA.push(new EnemyData(30, 1.9, 5));
@@ -124,11 +123,19 @@ export class CertificateComponent implements AfterViewInit {
       this.tickSpawner(delta);
       this.tickEnemies(delta);
 
-      this.lastTick = now;
-      this.time++;
+      this.drawCert(this.ctx, this.cert, this.certX, this.certY);
 
-      if(this.time > TIMEUP){
+      this.lastTick = now;
+      this.time += delta;
+
+      if(this.time > TIMEUP && !this.lost){
         this.win = true;
+        this.drag = false;
+        return true;
+      }
+
+      if(this.lost){
+        return true;
       }
 
       requestAnimationFrame(() => this.loop());
@@ -137,20 +144,17 @@ export class CertificateComponent implements AfterViewInit {
     tickEnemies(delta) {
       this.enemies = this.enemies.filter(enemy => {
 
-        const angle = Math.atan2(
-          this.certY + this.certHeight / 2 - enemy.y - enemy.height / 2,
-          this.certX +  this.certWidth/ 2 - enemy.x - enemy.width / 2
-        );
         const color = `rgb(${ENEMY_COLOR_SATURATION}, 50, green)`;
 
-        enemy.x += Math.cos(angle) * enemy.speed;
-        enemy.y += Math.sin(angle) * enemy.speed;
+        enemy.x += Math.cos(enemy.angle) * enemy.speed;
+        enemy.y += Math.sin(enemy.angle) * enemy.speed;
 
         if (this.intersectsWithCertificate(enemy.x, enemy.y, enemy.width, enemy.height)) {
           this.health -= enemy.damage;
 
-          if (this.health < 0) {
+          if (this.health <= 0) {
             this.health = 0;
+            this.drag = false;
             this.lost = true;
           }
 
@@ -186,9 +190,14 @@ export class CertificateComponent implements AfterViewInit {
           y = side ? -data.size : this.canvasHeight;
         }
 
+        let angle = Math.atan2(
+          this.certY + this.certHeight / 2 - y - data.size / 2,
+          this.certX +  this.certWidth/ 2 - x - data.size / 2
+        );
         const enemy = new Enemy(
           x,
           y,
+          angle,
           data.size,
           data.size,
           data.speed,
@@ -201,6 +210,14 @@ export class CertificateComponent implements AfterViewInit {
       }
     }
 
+    tickCert() {
+      if(this.drag){
+        var deltaX = Math.abs(this.lastMouseX);
+        var deltaY = Math.abs(this.lastMouseY);
+      }
+      this.drawCert(this.ctx, this.cert, this.certX, this.certY);
+    }
+
     intersectsWithCertificate(x, y, width, height) {
       return (
         x + width > this.certLeft &&
@@ -211,16 +228,27 @@ export class CertificateComponent implements AfterViewInit {
     }
 
     handleMouseDown(event) {
-      console.log(event);
+      if((event.x <= this.certX + this.certWidth && event.x >= this.certX)
+      && (event.y <=this.certY + this.certHeight && event.y >= this.certY)){
+        this.drag = true;
+        this.lastMouseX = event.x;
+        this.lastMouseY = event.y;
+      }
     }
 
-
-    handleMouseUp(event) {
+    handleMouseUp() {
       this.drag = false;
     }
 
     handleMouseMove(event) {
-      console.log(event);
+      if(this.drag){
+        let deltaX = event.x - this.lastMouseX;
+        let deltaY = event.y - this.lastMouseY;
+        this.lastMouseX = event.x;
+        this.lastMouseY = event.y;
+        this.certX += deltaX;
+        this.certY += deltaY;
+      }
     }
 
     resize() {
@@ -250,7 +278,26 @@ export class CertificateComponent implements AfterViewInit {
     }
 
     restart() {
-      location.reload();
+      this.win = false;
+      this.lost = false;
+      this.health = START_HEALTH;
+
+      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+      this.lastTick = Date.now();
+      this.progress = 0;
+      this.time = 0;
+      this.enemies = [];
+      this.spawnTimer = 0;
+
+      this.cert.src = '../../../assets/img/certificate.png';
+
+      this.resize();
+
+      requestAnimationFrame(() => { this.loop(); });
+    }
+
+    continue() {
+      this.story.openNextStoryMsg();
     }
 
     fillCircle(ctx, x, y, width, height) {
@@ -260,6 +307,9 @@ export class CertificateComponent implements AfterViewInit {
     }
 
     drawCert(ctx, cert, x, y) {
+      if(this.health <= 30){
+        this.cert.src = '../../../assets/img/certificate_cracked.png';
+      }
       ctx.drawImage(cert, x, y, this.certWidth, this.certHeight);
       this.certTop = this.certY;
       this.certLeft = this.certX;

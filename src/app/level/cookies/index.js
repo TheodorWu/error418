@@ -1,6 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-import { StoryService } from 'src/app/services/story.service';
-
 let canvas;
 let canvasWidth, canvasHeight;
 let ctx;
@@ -33,7 +30,7 @@ const SCORES_NEEDED = 5;
 const BIN_SIZE = 192;
 const BIN_Y_VARIATION = 250;
 
-function start() {
+window.onload = () => {
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
 	lastTick = Date.now();
@@ -98,7 +95,7 @@ function start() {
 		
 		setTimeout(() => {
 			acceptButton.disabled = false;
-			header.style.top = "0";
+			header.style.top = 0;
 		}, ACCEPT_FREQUENCY);
 	});
 	declineButton.disabled = true;
@@ -382,14 +379,6 @@ function intersectingCookies(x, y, width, height) {
 }
 
 class Cookie {
-	x;
-	y;
-	size;
-	vx;
-	vy;
-	rotation;
-	remove;
-	
 	constructor(x, y, size) {
 		this.x = x;
 		this.y = y;
@@ -441,23 +430,4 @@ function loadImage(path) {
 
 function randomSign() {
 	return Math.sign(Math.random() - 0.5);
-}
-
-@Component({
-  selector: 'app-cookies',
-  templateUrl: './cookies.component.html',
-  styleUrls: ['./cookies.component.scss']
-})
-export class CookiesComponent implements AfterViewInit {
-
-  constructor(private story: StoryService) { }
-
-  ngAfterViewInit() {
-	  start();
-  }
-
-  next() {
-    this.story.openNextStoryMsg();
-  }
-
 }
