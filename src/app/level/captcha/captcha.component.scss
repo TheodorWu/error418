@@ -1,0 +1,48 @@
+.container {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80vw;
+  height: 80vh;
+}
+
+.captcha-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.captcha-card {
+  max-width: 80vw;
+}
+
+.card-asset {
+  width: 10em;
+  height: 10em;
+  margin: 0.5em;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.2), -3px -3px 0 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.card-asset img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-asset .back {
+  background: blue;
+  transform: rotateY( 0deg );
+}
+.card-asset .front {
+  background: blue;
+  transform: rotateY( 180deg );
+}
+

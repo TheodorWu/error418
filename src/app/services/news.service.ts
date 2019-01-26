@@ -19,6 +19,12 @@ export class NewsService {
     });
   }
 
+  showPositiveMsg(title: string, txt: string) {
+    this.toastr.success(txt, title, {
+      timeOut: 3000,
+    });
+  }
+
   showErrorMsg(title: string, txt: string) {
     this.toastr.error(txt, title, {
       timeOut: 3000,
