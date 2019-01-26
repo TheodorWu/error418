@@ -10,7 +10,7 @@ export class CaptchaAsset {
   constructor(id: number) {
     this.id = id;
     this.path = `${environment.deployUrl}assets/img/car${id}.png`;
-    this.flippedPath = `${environment.deployUrl}assets/captchas/AssetFlipped.png`;
+    this.flippedPath = `${environment.deployUrl}assets/img/cardback.png`;
     this.flipped = false;
   }
 
