@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { environment } from 'src/environments/environment';
 
@@ -51,7 +51,7 @@ class Cookie {
   templateUrl: './cookies.component.html',
   styleUrls: ['./cookies.component.scss']
 })
-export class CookiesComponent implements OnInit {
+export class CookiesComponent implements AfterViewInit {
   canvas;
   canvasWidth;
   canvasHeight;
@@ -67,10 +67,13 @@ export class CookiesComponent implements OnInit {
   bin;
   score;
 
+  acceptButtonDisabled: boolean;
+  declineButtonDisabled: boolean;
+
 
   constructor(private story: StoryService) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.canvas = document.getElementById('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.lastTick = Date.now();
@@ -130,17 +133,17 @@ export class CookiesComponent implements OnInit {
         }, RANDOM_DELAY_FACTOR * Math.random());
       }
 
-      // acceptButton.disabled = true;
+      this.acceptButtonDisabled = true;
       header.style.top = '-' + headerStyle.height;
 
       setTimeout(() => {
-        // acceptButton.disabled = false;
+        this.acceptButtonDisabled = false;
         header.style.top = '0';
       }, ACCEPT_FREQUENCY);
     });
-    // declineButton.disabled = true;
+    this.declineButtonDisabled = true;
     declineButton.addEventListener('click', () => {
-      window.location.replace('about:blank'); // TODO Use proper URL
+      this.next(); // TODO Use proper URL
     });
 
     requestAnimationFrame(() => this.loop());
@@ -149,8 +152,8 @@ export class CookiesComponent implements OnInit {
   loop() {
     const now = Date.now();
     const delta = (now - this.lastTick) / 1;
-    const binBackImage = this.images['res/bin_back.png'];
-    const binFrontImage = this.images['res/bin_front.png'];
+    const binBackImage = this.images[`${environment.deployUrl}assets/img/cookies/bin_back.png`];
+    const binFrontImage = this.images[`${environment.deployUrl}assets/img/cookies/bin_front.png`];
 
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
@@ -180,7 +183,7 @@ export class CookiesComponent implements OnInit {
   }
 
   tickCookies(delta) {
-    const cookieImage = this.images['res/cookie.png'];
+    const cookieImage = this.images[`${environment.deployUrl}assets/img/cookies/cookie.png`];
 
     this.cookies = this.cookies.filter((cookie) => {
       if (cookie.remove) {
@@ -259,7 +262,7 @@ export class CookiesComponent implements OnInit {
           this.randomizeBin();
 
           if (this.score <= 0) {
-            // document.getElementById('decline').disabled = false;
+            this.declineButtonDisabled = false;
             this.score = 0;
           }
         }
@@ -330,7 +333,7 @@ export class CookiesComponent implements OnInit {
       }
     }
 
-    const playerImage = this.images['res/player.png'];
+    const playerImage = this.images[`${environment.deployUrl}assets/img/cookies/player.png`];
 
     if (playerImage) {
       this.ctx.drawImage(playerImage, this.player.x, this.player.y, this.player.width, this.player.height);
