@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-downloads',
@@ -14,7 +15,7 @@ export class DownloadsComponent implements OnInit {
 
   private colors: string[];
 
-  constructor() { }
+  constructor(private story: StoryService) { }
 
   ngOnInit() {
     let i;
@@ -60,7 +61,7 @@ export class DownloadsComponent implements OnInit {
   download(event) {
     let id = event.srcElement.id;
     if(id===this.correct){
-
+      this.story.openNextStoryMsg();
     } else {
       this.tries++;
       let ids = this.randomIds(Math.floor(Math.random() *13)+2);
