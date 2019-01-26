@@ -1,6 +1,6 @@
 <div class="container">
 
-  <mat-card (scroll)="scrolled($event)">
+  <mat-card >
     <mat-card-header>
       <mat-card-title>
         Terms of use
@@ -9,8 +9,7 @@
         Please read our terms of use very carefully
       </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content class="scroll-box">
-
+    <mat-card-content class="scroll-box" (scroll)="scrolled($event)">
       <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </div>
       <div>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, </div>
       <div>sed diam voluptua. </div>
