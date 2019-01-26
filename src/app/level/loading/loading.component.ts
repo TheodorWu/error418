@@ -268,8 +268,6 @@ export class LoadingComponent implements AfterViewInit {
   clickedEnemy(x, y) {
     for (let i = 0; i < this.enemies.length; i++) {
       const enemy = this.enemies[i];
-      console.log(x, '  ', y, '  ', enemy);
-
       if (
         x > enemy.x &&
         y > enemy.y &&

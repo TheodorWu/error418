@@ -21,8 +21,8 @@ export class AgbComponent implements OnInit {
               private story: StoryService) { }
 
   ngOnInit() {
-    this.story.openNextStoryMsg();
-    this.startTimer();
+    this.story.openNextStoryMsg().subscribe(() => {console.log('Start TImer');
+    this.startTimer();});
   }
 
   scrolled(event) {
