@@ -94,14 +94,14 @@ export class LoadingComponent implements AfterViewInit {
   resize() {
     const html = document.documentElement;
     const body = document.body;
-    const bodyWidth = Math.max(
+    const bodyWidth = Math.min(
       body.scrollWidth,
       body.offsetWidth,
       html.clientWidth,
       html.scrollWidth,
       html.offsetWidth
     );
-    const bodyHeight = Math.max(
+    const bodyHeight = Math.min(
       body.scrollHeight,
       body.offsetHeight,
       html.clientHeight,
