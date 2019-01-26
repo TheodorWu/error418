@@ -6,6 +6,7 @@
   position: relative;
   text-align: center;
   padding-top: 20em;
+  padding-right: 2em;
 }
 
 .button {
@@ -13,8 +14,7 @@
   width: 4em;
   color: black;
   background-color: black;
-  bottom: 0;
-  right: 0;
+  float: right;
   &:hover {
     background-color: lightgrey;
     border-color: grey;
