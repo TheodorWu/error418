@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class StoryService {
 
-  msgCounter = 5;
+  msgCounter = 0;
   dialogIsOpen = false;
 
   constructor(
@@ -31,8 +31,6 @@ export class StoryService {
   }
 
   openNextStoryMsg(): Observable<any> {
-
-
     const storyElm = STORY_TXT.find(txt => txt.num === this.msgCounter);
 
     const dialogRef = this.dialog.open(StoryDialogComponent, {
