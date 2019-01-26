@@ -6,8 +6,8 @@
 }
 
 .full-size {
-  width: 100;
-  height: 100;
+  width: 100%;
+  height: 100%;
 }
 
 .news-toast {
@@ -16,7 +16,6 @@
 
 .scroll-box {
   height: 10em;
-  background: #f4f4f4;
   border: 2px solid rgba(0, 0, 0, 0.1);
   padding: 15px;
   overflow-y: scroll;
