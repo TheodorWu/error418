@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'captcha', component: CaptchaComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: 'certificate', component: CertificateComponent },
-  { path: 'cookies', component: CookiesComponent}
-  { path: 'teapot', component: TeapotComponent}
+  { path: 'cookies', component: CookiesComponent},
+  { path: 'teapot', component: TeapotComponent},
   { path: 'home', component: HomeComponent},
 ];
 
