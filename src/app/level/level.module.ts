@@ -9,6 +9,7 @@ import { CaptchaComponent } from './captcha/captcha.component';
 import { DownloadsComponent } from './downloads/downloads.component';
 import { CertificateComponent } from './certificate/certificate.component';
 import { HomeComponent } from './home/home.component';
+import { TeapotComponent } from './teapot/teapot.component';
 
 @NgModule({
   declarations: [AgbComponent,
@@ -18,7 +19,8 @@ import { HomeComponent } from './home/home.component';
     CaptchaComponent,
     DownloadsComponent,
     CertificateComponent,
-    HomeComponent],
+    HomeComponent,
+    TeapotComponent],
   imports: [
     CommonModule,
     MaterialModule,
