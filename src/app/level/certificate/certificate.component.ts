@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 const PROGRESS_SPEED = 0.01;
 const START_SPAWN_FREQUENCY = 400;
@@ -88,7 +89,7 @@ export class CertificateComponent implements AfterViewInit {
       this.win = false;
 
       this.cert = new Image();
-      this.cert.src = '../../../assets/img/certificate.png';
+      this.cert.src = `${environment.deployUrl}assets/img/certificate.png`;
       this.certX = 100;
       this.certY = 100;
       this.certWidth = 120;

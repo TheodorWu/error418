@@ -9,7 +9,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class DownloadsComponent implements OnInit {
 
-  private range: number[] = [];
+  range: number[] = [];
   private count: number; // number of buttons
   private correct: string; // id of correct button
   private tries = 0;
