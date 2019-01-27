@@ -1,11 +1,16 @@
 <div class="boss-fight">
-  <canvas style="background-color: black"></canvas>
+  <progress id="bosshealth" [value]="teapotHealth" max="3"></progress>
+  <canvas id="canvas" style="background-color: black"></canvas>
 </div>
 <div class="boss-fight-actions">
   <div class="button-row">
-    <button class="button-row-item button">Attack</button>
-    <button class="button-row-item button">Block</button>
-    <button class="button-row-item button">Throw</button>
-    <button class="button-row-item button">Brew</button>
+    <button class="button-row-item button" id="attack" (click)="onClick($event)">Attack</button>
+    <button class="button-row-item button" id="hide" (click)="onClick($event)">Hide</button>
+    <button class="button-row-item button" id="block" (click)="onClick($event)">Block</button>
+    <button [disabled]="notEnoughEnergy" class="button-row-item button" id="brew" (click)="brew()">Brew</button>
+  </div>
+  <div class="player-bars">
+    <progress id="gauge" [value]="gauge" max="40"></progress>
+    <progress id="playerhealth" [value]="playerHealth" max="100"></progress>
   </div>
 </div>
