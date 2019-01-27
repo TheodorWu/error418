@@ -91,10 +91,10 @@ export class CookiesComponent implements AfterViewInit {
     this.ctx.imageSmoothingQuality = 'low';
     this.ctx.imageSmoothingEnabled = false;
 
-    this.loadImage(`${environment.deployUrl}assets/img/cookies/cookie.png`);
-    this.loadImage(`${environment.deployUrl}assets/img/cookies/player.png`);
-    this.loadImage(`${environment.deployUrl}assets/img/cookies/bin_back.png`);
-    this.loadImage(`${environment.deployUrl}assets/img/cookies/bin_front.png`);
+    this.loadImage(`assets/img/cookies/cookie.png`);
+    this.loadImage(`assets/img/cookies/player.png`);
+    this.loadImage(`assets/img/cookies/bin_back.png`);
+    this.loadImage(`assets/img/cookies/bin_front.png`);
     this.resize();
 
     this.player = {
@@ -153,8 +153,8 @@ export class CookiesComponent implements AfterViewInit {
   loop() {
     const now = Date.now();
     const delta = (now - this.lastTick) / 1;
-    const binBackImage = this.images[`${environment.deployUrl}assets/img/cookies/bin_back.png`];
-    const binFrontImage = this.images[`${environment.deployUrl}assets/img/cookies/bin_front.png`];
+    const binBackImage = this.images[`assets/img/cookies/bin_back.png`];
+    const binFrontImage = this.images[`assets/img/cookies/bin_front.png`];
 
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
@@ -184,7 +184,7 @@ export class CookiesComponent implements AfterViewInit {
   }
 
   tickCookies(delta) {
-    const cookieImage = this.images[`${environment.deployUrl}assets/img/cookies/cookie.png`];
+    const cookieImage = this.images[`assets/img/cookies/cookie.png`];
 
     this.cookies = this.cookies.filter((cookie) => {
       if (cookie.remove) {
@@ -334,7 +334,7 @@ export class CookiesComponent implements AfterViewInit {
       }
     }
 
-    const playerImage = this.images[`${environment.deployUrl}assets/img/cookies/player.png`];
+    const playerImage = this.images[`assets/img/cookies/player.png`];
 
     if (playerImage) {
       this.ctx.drawImage(playerImage, this.player.x, this.player.y, this.player.width, this.player.height);

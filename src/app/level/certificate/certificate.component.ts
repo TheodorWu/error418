@@ -88,7 +88,7 @@ export class CertificateComponent implements AfterViewInit {
       this.win = false;
 
       this.cert = new Image();
-      this.cert.src = '../../../assets/img/certificate.png';
+      this.cert.src = 'assets/img/certificate.png';
       this.certX = 100;
       this.certY = 100;
       this.certWidth = 120;
@@ -289,7 +289,7 @@ export class CertificateComponent implements AfterViewInit {
       this.enemies = [];
       this.spawnTimer = 0;
 
-      this.cert.src = '../../../assets/img/certificate.png';
+      this.cert.src = 'assets/img/certificate.png';
 
       this.resize();
 
@@ -308,7 +308,7 @@ export class CertificateComponent implements AfterViewInit {
 
     drawCert(ctx, cert, x, y) {
       if(this.health <= 30){
-        this.cert.src = '../../../assets/img/certificate_cracked.png';
+        this.cert.src = 'assets/img/certificate_cracked.png';
       }
       ctx.drawImage(cert, x, y, this.certWidth, this.certHeight);
       this.certTop = this.certY;

@@ -235,16 +235,16 @@ export class TeapotComponent implements AfterViewInit {
 
   setBossSprite(){
     if(this.teapotAction == 'steam'){
-      this.pot.src = '../../../assets/img/teapot_steam.png';
+      this.pot.src = 'assets/img/teapot_steam.png';
     }
     if(this.teapotAction == 'block'){
-      this.pot.src = '../../../assets/img/teapot_block.png';
+      this.pot.src = 'assets/img/teapot_block.png';
     }
     if(this.teapotAction == 'water'){
-      this.pot.src = '../../../assets/img/teapot_water.png';
+      this.pot.src = 'assets/img/teapot_water.png';
     }
     if(this.teapotAction == 'defeat'){
-      this.pot.src = '../../../assets/img/teapot_defeat.png';
+      this.pot.src = 'assets/img/teapot_defeat.png';
     }
   }
 
