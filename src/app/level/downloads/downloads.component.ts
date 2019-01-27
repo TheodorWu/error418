@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-downloads',
@@ -15,7 +16,7 @@ export class DownloadsComponent implements OnInit {
 
   private colors: string[];
 
-  constructor(private story: StoryService) { }
+  constructor(private story: StoryService, private news: NewsService) { }
 
   ngOnInit() {
     let i;
@@ -64,6 +65,14 @@ export class DownloadsComponent implements OnInit {
       this.story.openNextStoryMsg();
     } else {
       this.tries++;
+      if (this.tries === 15) {
+        this.news.showInfoMsg('Try clicking the less flashy Buttons', 'The right one is always the least noticible');
+      } else if (this.tries === 25) {
+        this.news.showInfoMsg('Is really every button changing its color?', '');
+      } else if (this.tries === 100) {
+        this.news.showNewsMsg('New World Record', 'Man clicked wrong download buttons a 100 times');
+      }
+      this.news.showErrorMsg('Attempt number: ' + this.tries, '', 500);
       let ids = this.randomIds(Math.floor(Math.random() *13)+2);
       ids.push(id);
       this.changeColors(ids);
