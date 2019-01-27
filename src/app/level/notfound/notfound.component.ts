@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { StoryService } from 'src/app/services/story.service';
 
 @Component({
   selector: 'app-notfound',
@@ -15,8 +16,12 @@ export class NotfoundComponent implements OnInit {
     elem.setAttribute('style', 'background: radial-gradient(60px at ' + e.clientX/e.target.clientWidth*100 + '% ' + e.clientY/e.target.clientHeight*100 + '%, white, black); !important');
   }
 
-  constructor() { }
+  constructor(private story: StoryService) { }
 
   ngOnInit() {
+  }
+
+  next() {
+    this.story.openNextStoryMsg();
   }
 }
