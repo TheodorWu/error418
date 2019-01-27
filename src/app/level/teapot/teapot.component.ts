@@ -81,6 +81,17 @@ export class TeapotComponent implements AfterViewInit {
   }
 
   restart() {
+    switch (Math.floor(Math.random() * 3)) {
+      case 0:
+        this.news.showInfoMsg('Try blocking when the tea pot spills water', '');
+        break;
+      case 1:
+        this.news.showInfoMsg('Try Attacking when the tea pot prepares his next move', '');
+        break;
+      case 2:
+        this.news.showInfoMsg('Try hiding when the tea pot blows out steam', '');
+        break;
+    }
     this.win = false;
     this.lost = false;
     this.playerHealth = PLAYER_HEALTH;
