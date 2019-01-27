@@ -3,7 +3,7 @@ import { StoryService } from '../../services/story.service';
 import { NewsService } from '../../services/news.service';
 
 const BOSS_HEALTH = 3;
-const BOSS_LEVELS = [2,3,4];
+const BOSS_LEVELS = 4;
 const PLAYER_HEALTH = 100;
 const GAUGE_LIMIT = 30;
 
@@ -24,7 +24,6 @@ export class TeapotComponent implements AfterViewInit {
   teapotStates;
   teapotHealth = BOSS_HEALTH;
   teapotAction;
-  teapotRage;
   rageOffset;
   pot;
 
@@ -62,8 +61,7 @@ export class TeapotComponent implements AfterViewInit {
     this.pot = new Image();
     this.setBossSprite();
     this.teapotHealth = BOSS_HEALTH;
-    this.teapotRage = BOSS_LEVELS;
-    this.rageOffset = this.teapotRage.pop();
+    this.rageOffset = BOSS_LEVELS;
 
     this.playerHealth = PLAYER_HEALTH;
 
@@ -97,8 +95,7 @@ export class TeapotComponent implements AfterViewInit {
 
     this.notEnoughEnergy = true;
 
-    this.teapotRage = BOSS_LEVELS;
-    this.rageOffset = this.teapotRage.pop();
+    this.rageOffset--;
 
     requestAnimationFrame(() => { this.loop(); });
 

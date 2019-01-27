@@ -35,7 +35,7 @@ export class CaptchaModel {
 }
 
 export const CAPTCHAS: Array<CaptchaModel> = [
-  new CaptchaModel('Find all Car Pairs', 'Please verify that your Human by solving this Captcha', [
+  new CaptchaModel('Find all car pairs', 'Please verify that you\'re human by solving this Captcha', [
     new CaptchaAsset(1),
     new CaptchaAsset(2),
     new CaptchaAsset(3),

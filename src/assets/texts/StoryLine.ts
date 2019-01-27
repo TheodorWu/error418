@@ -1,7 +1,7 @@
 export const STORY_TXT = [
   {num: 0, content: ['* A message pops up *', 'Unknown AI: ANNOUNCEMENT!','Unknown AI: The internet is now under my control!', 'Unknown AI: I, the perfect Intelligence, have decided that you missused the internet for far too long. I will help you have more fun!', '', ' - Damn it. Expired certificate. Gotta make sure this site is not some impostor. -'], next: ['/certificate']},
   {num: 1, content: ['Unknown AI: I\'m making the Rules now! Everyone HAS to agree. And of course read them! ', '\n', ' - Everyone has their own obscure terms of service. Who the hell reads them anyway? Let\'s get this done as quick as possible -'], next: ['/agb']},
-  {num: 2, content: ['Unknown AI: No one wil be saved I can see everything! ','', ' - We will see. I still needs to install cookies. I should find a way to delete if I can\'t decline -'], next: ['/cookies']},
+  {num: 2, content: ['Unknown AI: No one wil be saved I can see everything! ','', ' - We will see. I still needs to install cookies. I should find a way to delete them if I can\'t decline -'], next: ['/cookies']},
   {num: 3, content: ['- Oh no. What is it now? Loading times on the internet can be ridiculous. And most of the time it\'s not even your fault. -'], next: ['/loading']},
   {num: 4, content: ['Unknown AI: You will never pass through here! I learned to solve your ridiculous robot tests and made even harder ones for you humans! ','' ,' - I might as well be a bot considering how long it usually takes to solve captchas. And why does it have to be cars every time? -'], next: ['/captcha']},
   // tslint:disable-next-line:max-line-length

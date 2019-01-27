@@ -42,7 +42,7 @@ export class CaptchaComponent implements OnInit {
         captcha.flipped = !captcha.flipped;
       } else {
         if (this.currentlyRevealed.size >= 2) {
-          this.msgService.showErrorMsg('Action not Allowed', 'You have already revealed two Cards');
+          this.msgService.showErrorMsg('Action not allowed', 'You have already revealed two Cards');
           this.currentlyRevealed.forEach((value: CaptchaAsset, key: string) => {
             document.getElementById(key).setAttribute('style', 'transform: rotateY( 0deg );');
             value.flipped = !value.flipped;
@@ -62,7 +62,7 @@ export class CaptchaComponent implements OnInit {
             });
 
             if (sameId) {
-              this.msgService.showPositiveMsg('You Got a Pair', 'Congratulations...');
+              this.msgService.showPositiveMsg('You got a pair', 'Congratulations...');
               this.currentlyRevealed.forEach((value: CaptchaAsset, key: string) => {
                 value.partnerFound = true;
               });

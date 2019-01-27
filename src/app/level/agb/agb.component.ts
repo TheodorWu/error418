@@ -41,12 +41,12 @@ export class AgbComponent implements OnInit {
     this.interval = setInterval(() => {
       this.time++;
       if (this.time === 3) {
-        this.news.showNewsMsg('Zamaon Sales going down rapidly',
-        'Due to Users having to read the entire Terms of Use nobody is able to buy anything');
+        this.news.showNewsMsg('Zamaon sales going down rapidly',
+        'Due to users having to read the entire terms of service nobody is able to buy anything');
       } else if (this.time === 8) {
-        this.news.showNewsMsg('Sumsang Users organising protest', 'They demand shorter Terms of Use Agreements');
+        this.news.showNewsMsg('Sumsang users organising protest', 'They demand shorter terms of service agreements');
       } else if (this.time === 15) {
-        this.news.showNewsMsg('Humans need an average of 26 Seconds to read the Terms of Use', 'Faked scientific Study tries to fool AI');
+        this.news.showNewsMsg('Humans need an average of 26 seconds to read the terms of service', 'Faked scientific study tries to fool AI');
       }
     }, 1000);
   }

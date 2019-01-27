@@ -440,7 +440,7 @@ export class CookiesComponent implements AfterViewInit {
   }
 
   next() {
-    this.news.showNewsMsg('Petition to organise a cookie delting championship',
+    this.news.showNewsMsg('Petition to organise a cookie deleting championship',
     'Gaming community is excited by new fun ways to customize settings');
     this.story.openNextStoryMsg();
   }
