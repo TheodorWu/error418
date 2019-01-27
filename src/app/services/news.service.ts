@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { StopwatchService } from './stopwatch.service';
+import { NEWS_TXT } from 'src/assets/texts/News';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
+
+  currentNewsCounter = 0;
 
   constructor(
     private toastr: ToastrService,
@@ -26,7 +29,13 @@ export class NewsService {
   }
 
   showNextNews() {
-    this.showNewsMsg('Test', 'Test');
+    if (this.currentNewsCounter < NEWS_TXT.length){
+      const msg = NEWS_TXT[this.currentNewsCounter];
+      this.showNewsMsg(msg.headline, msg.subheadline);
+      this.currentNewsCounter++;
+    } else {
+      this.showNewsMsg('WOW Really?', 'You have been playing for so long we have run out of news to display...');
+    }
   }
 
   showPositiveMsg(title: string, txt: string) {
