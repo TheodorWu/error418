@@ -7,7 +7,7 @@ export const STORY_TXT = [
   // tslint:disable-next-line:max-line-length
   {num: 5, content: 'Always be careful to not download any malicious software. These guys have no shame.', next: ['/downloads']},
   {num: 6, content: '404. Great. Maintain your damn websites properly!', next: ['/404']},
-  {num: 7, content: 'Error 418 I\'m a Teapot', next: ['/teapot']},
+  {num: 7, content: '* The screen flickers * \n Error 418: I\'m a Teapot \n Teapot: You will never get your homepage back! \n Teapot: My water and steam attacks will destroy you! \n - I should be able to block his water but the steam could be a problem; maybe I can hide. -', next: ['/teapot']},
   // Should always be the last element
-  {num: 8, content: 'That was an odyssey. Finally I\'m home!', next: ['/home']}
+  {num: 8, content: 'That was an odyssey. Finally I found my homepage again!', next: ['/home']}
 ];
