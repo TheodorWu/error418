@@ -53,9 +53,9 @@ export class NewsService {
     });
   }
 
-  showErrorMsg(title: string, txt: string) {
+  showErrorMsg(title: string, txt: string, duration: number = 3000) {
     this.toastr.error(txt, title, {
-      timeOut: 3000,
+      timeOut: duration,
     });
   }
 }
