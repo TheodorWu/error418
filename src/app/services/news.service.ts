@@ -23,13 +23,16 @@ export class NewsService {
 
   showNewsMsg(title: string, txt: string) {
     this.toastr.show(txt, title, {
-      timeOut: 6000,
+      disableTimeOut: true,
       toastClass: 'toast news-toast'
     });
   }
 
   showNextNews() {
-    if (this.currentNewsCounter < NEWS_TXT.length){
+    if (this.toastr.currentlyActive > 0){
+      return;
+    }
+    if (this.currentNewsCounter < NEWS_TXT.length) {
       const msg = NEWS_TXT[this.currentNewsCounter];
       this.showNewsMsg(msg.headline, msg.subheadline);
       this.currentNewsCounter++;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastrService, ActiveToast } from 'ngx-toastr';
 
-const MAX_TIME_OFFSET = 10;
+const MAX_TIME_OFFSET = 20;
 
 export class TimedCallback {
   callback: Function;
