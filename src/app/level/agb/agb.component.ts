@@ -13,7 +13,7 @@ export class AgbComponent implements OnInit {
   private interval;
 
   public disableAccept = true;
-  private movedCancel = false;
+  public movedCancel = false;
 
   constructor(
     private news: NewsService,
