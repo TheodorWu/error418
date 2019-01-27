@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ToastrService, ActiveToast } from 'ngx-toastr';
 
+const MAX_TIME_OFFSET = 20;
+
 export class TimedCallback {
   callback: Function;
   timeInSec: number;
+  useRandom: boolean;
 
-  constructor(callback: Function, timeInSec: number) {
+  constructor(callback: Function, timeInSec: number, useRandom: boolean) {
     this.callback = callback;
     this.timeInSec = timeInSec;
+    this.useRandom = useRandom;
   }
 }
 
@@ -50,15 +54,16 @@ export class StopwatchService {
     );
   }
 
-  registerCallback(callback: Function, seconds: number) {
-    const callObj: TimedCallback = new TimedCallback(callback, seconds);
+  registerCallback(callback: Function, seconds: number, useRandomOffset: boolean) {
+    const callObj: TimedCallback = new TimedCallback(callback, seconds, useRandomOffset);
     this.callbackArray.push(callObj);
   }
 
   callCallbacks() {
     const timeSec = this.minutes * 60 + this.seconds;
     this.callbackArray.forEach((element ) => {
-      if ((timeSec % element.timeInSec) === 0 ) {
+      const offset = element.useRandom ? Math.floor(Math.random() * MAX_TIME_OFFSET) : 0;
+      if ((timeSec % (element.timeInSec + offset)) === 0 ) {
         element.callback();
       }
     });

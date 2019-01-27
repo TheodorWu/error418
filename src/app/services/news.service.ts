@@ -11,7 +11,7 @@ export class NewsService {
     private toastr: ToastrService,
     private stopWatch: StopwatchService
     ) {
-      this.stopWatch.registerCallback(() => this.showNextNews(), 5);
+      this.stopWatch.registerCallback(() => this.showNextNews(), 20, true);
      }
 
   showToast() {
@@ -20,7 +20,7 @@ export class NewsService {
 
   showNewsMsg(title: string, txt: string) {
     this.toastr.show(txt, title, {
-      disableTimeOut: true,
+      timeOut: 6000,
       toastClass: 'toast news-toast'
     });
   }
