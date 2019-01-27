@@ -2,14 +2,30 @@
 	position: absolute;
 	top: 10px;
 	left: 10px;
-	width: 100px;
+	width: 50px;
 }
 
 .heading {
 	margin: 10px;
+	padding: 0;
+	text-align: center;
+}
+
+.button {
+	width: 150px;
+	height: 50px;
+}
+
+.content {
+	margin: 25px;
+	padding: 0;
 	text-align: center;
 }
 
 .time {
 	text-align: center;
+}
+
+#baloons {
+	font-size: 100pt;
 }
