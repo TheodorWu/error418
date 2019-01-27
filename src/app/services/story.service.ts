@@ -55,6 +55,6 @@ export class StoryService {
   }
 
   isCompleted(): boolean {
-    return STORY_TXT.pop().num <= this.msgCounter;
+    return STORY_TXT[STORY_TXT.length - 1].num <= this.msgCounter;
   }
 }

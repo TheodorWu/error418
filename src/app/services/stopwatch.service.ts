@@ -50,7 +50,7 @@ export class StopwatchService {
       this.minutes +
       ' minutes and ' +
       this.seconds +
-      ' seconds to complete this game'
+      ' seconds to complete this game.'
     );
   }
 
