@@ -95,7 +95,7 @@ export class TeapotComponent implements AfterViewInit {
 
     this.notEnoughEnergy = true;
 
-    this.rageOffset--;
+    this.rageOffset = BOSS_LEVELS;
 
     requestAnimationFrame(() => { this.loop(); });
 
@@ -209,7 +209,7 @@ export class TeapotComponent implements AfterViewInit {
     if(this.teapotHealth > 0){
       this.teapotHealth--;
     }
-    this.rageOffset = this.teapotRage.pop();
+    this.rageOffset--;
     this.gauge = 0;
   }
 
