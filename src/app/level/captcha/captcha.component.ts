@@ -11,7 +11,7 @@ import { StoryService } from 'src/app/services/story.service';
 export class CaptchaComponent implements OnInit {
 
   currentCaptcha: CaptchaModel;
-  currentlyRevealed: Array<CaptchaAsset> = [];
+  currentlyRevealed: Map<string, CaptchaAsset> = new Map<string, CaptchaAsset>();
 
   constructor(private msgService: NewsService, private story: StoryService) {
   }
@@ -35,30 +35,43 @@ export class CaptchaComponent implements OnInit {
     if (captcha.partnerFound) {
       this.msgService.showPositiveMsg('Already Solved', 'Why would you try that one again ?');
     } else {
-
+      const idx = 'Card' + index;
       if (captcha.flipped) {
-        document.getElementById('Card' + index).setAttribute('style', 'transform: rotateY( 0deg );');
-        const idx = this.currentlyRevealed.indexOf(captcha);
-        if (idx > -1) {
-          this.currentlyRevealed.splice(idx, 1);
-        }
+        document.getElementById(idx).setAttribute('style', 'transform: rotateY( 0deg );');
+        this.currentlyRevealed.delete(idx);
+        captcha.flipped = !captcha.flipped;
       } else {
-        if (this.currentlyRevealed.length >= 2) {
+        if (this.currentlyRevealed.size >= 2) {
           this.msgService.showErrorMsg('Action not Allowed', 'You have already revealed two Cards');
+          this.currentlyRevealed.forEach((value: CaptchaAsset, key: string) => {
+            document.getElementById(key).setAttribute('style', 'transform: rotateY( 0deg );');
+            value.flipped = !value.flipped;
+          });
+          this.currentlyRevealed = new Map<string, CaptchaAsset>();
+          console.log(this.currentlyRevealed);
         } else {
-          document.getElementById('Card' + index).setAttribute('style', 'transform: rotateY( 180deg );');
-          this.currentlyRevealed.push(captcha);
-          if (this.currentlyRevealed.length === 2) {
-            if (this.currentlyRevealed[0].id === this.currentlyRevealed[1].id) {
+          document.getElementById(idx).setAttribute('style', 'transform: rotateY( 180deg );');
+          captcha.flipped = !captcha.flipped;
+          this.currentlyRevealed.set(idx, captcha);
+          if (this.currentlyRevealed.size === 2) {
+            let lastId: number;
+            let sameId = true;
+            this.currentlyRevealed.forEach((value: CaptchaAsset, key: string) => {
+              sameId = lastId === value.id;
+              lastId = value.id;
+            });
+
+            if (sameId) {
               this.msgService.showPositiveMsg('You Got a Pair', 'Congratulations...');
-              this.currentlyRevealed[0].partnerFound = true;
-              this.currentlyRevealed[1].partnerFound = true;
-              this.currentlyRevealed = [];
+              this.currentlyRevealed.forEach((value: CaptchaAsset, key: string) => {
+                value.partnerFound = true;
+              });
+              this.currentlyRevealed = new Map<string, CaptchaAsset>();
+              console.log(this.currentlyRevealed);
             }
           }
         }
       }
-      captcha.flipped = !captcha.flipped;
     }
   }
 
