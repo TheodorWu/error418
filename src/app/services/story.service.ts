@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class StoryService {
 
-  msgCounter = 7;
+  msgCounter = 0;
   dialogIsOpen = false;
 
   constructor(
@@ -35,8 +35,8 @@ export class StoryService {
     console.log(this.msgCounter);
 
     const dialogRef = this.dialog.open(StoryDialogComponent, {
-      width: '90%',
-      height: '90%',
+      width: '50%',
+      height: '50%',
       disableClose: true,
       panelClass: 'story-panel',
       data: storyElm.content
