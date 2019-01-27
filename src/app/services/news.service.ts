@@ -23,7 +23,7 @@ export class NewsService {
 
   showNewsMsg(title: string, txt: string) {
     this.toastr.show(txt, title, {
-      disableTimeOut: true,
+      timeOut: 10000,
       toastClass: 'toast news-toast'
     });
   }
