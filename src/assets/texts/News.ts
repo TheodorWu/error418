@@ -10,6 +10,6 @@ export const NEWS_TXT = [
   },
   { headline: 'Scientists start to worry', subheadline: 'AI seems to have developed its own consciousness' },
   { headline: 'Have You Tried turning it on and off again ?', subheadline: 'IT Specialist offers possible Solution to the AI Problem' },
-  { headline: 'AI takes over major Websites', subheadline: 'Sub Headline 5' },
+  { headline: 'AI takes over major Websites', subheadline: 'Replacing often ignored information and settings with small minigames' },
   { headline: 'AI takes over private Coffee Machines', subheadline: 'Scientists recommend switching to Tea Machines not supporting HTCPCP' }
 ];

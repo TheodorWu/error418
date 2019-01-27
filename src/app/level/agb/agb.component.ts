@@ -40,7 +40,15 @@ export class AgbComponent implements OnInit {
   startTimer() {
     this.interval = setInterval(() => {
       this.time++;
-    }, 100);
+      if (this.time === 3) {
+        this.news.showNewsMsg('Zamaon Sales going down rapidly',
+        'Due to Users having to read the entire Terms of Use nobody is able to buy anything');
+      } else if (this.time === 8) {
+        this.news.showNewsMsg('Sumsang Users organising protest', 'They demand shorter Terms of Use Agreements');
+      } else if (this.time === 15) {
+        this.news.showNewsMsg('Humans need an average of 26 Seconds to read the Terms of Use', 'Faked scientific Study tries to fool AI');
+      }
+    }, 1000);
   }
 
   pauseTimer() {
@@ -99,7 +107,7 @@ export class AgbComponent implements OnInit {
         break;
       }
       default: {
-        this.news.showErrorMsg(
+        this.news.showPositiveMsg(
           '',
           'You made your choice. Now go and live with it.'
         );
