@@ -103,7 +103,7 @@ export class AgbComponent implements OnInit {
           '',
           'You made your choice. Now go and live with it.'
         );
-        this.router.navigate(['home']);
+        this.story.openNextStoryMsg();
         break;
       }
     }

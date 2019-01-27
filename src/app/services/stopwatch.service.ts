@@ -5,13 +5,12 @@ import { ToastrService, ActiveToast } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class StopwatchService {
-
   stopWatchToast: ActiveToast<any>;
   minutes = 0;
   seconds = 0;
   timer;
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private toastr: ToastrService) {}
 
   start() {
     this.startTimer();
@@ -29,6 +28,12 @@ export class StopwatchService {
   }
 
   stop() {
-    return 'It took you: ' + this.minutes + ' minutes and ' + this.seconds + ' seconds to complete this game';
-    }
+    return (
+      'It took you: ' +
+      this.minutes +
+      ' minutes and ' +
+      this.seconds +
+      ' seconds to complete this game'
+    );
+  }
 }

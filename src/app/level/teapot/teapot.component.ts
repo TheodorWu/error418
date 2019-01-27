@@ -31,7 +31,7 @@ export class TeapotComponent implements AfterViewInit {
   playerHealth = PLAYER_HEALTH;
   notEnoughEnergy = true;
 
-  constructor() { }
+  constructor(private story: StoryService) { }
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas');
