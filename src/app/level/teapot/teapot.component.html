@@ -1,16 +1,30 @@
+<div *ngIf="go" class="full-size text-center front">
+  <button class="button" (click)="start()">Start</button>
+</div>
+<div *ngIf="lost" class="full-size text-center front">
+  <button class="button" (click)="restart()">Try again?</button>
+</div>
+<div *ngIf="win" class="full-size text-center front">
+  <button class="button" (click)="continue()">Continue</button>
+</div>
 <div class="boss-fight">
-  <progress id="bosshealth" [value]="teapotHealth" max="3"></progress>
-  <canvas id="canvas" style="background-color: black"></canvas>
+  <label for="bosshealth" class="front label bosslabel">Teapot life remaining:</label>
+  <progress id="bosshealth" class="front bosshealth" [value]="teapotHealth" max="3"></progress>
+  <canvas id="canvas"></canvas>
 </div>
 <div class="boss-fight-actions">
-  <div class="button-row">
-    <button class="button-row-item button" id="attack" (click)="onClick($event)">Attack</button>
-    <button class="button-row-item button" id="hide" (click)="onClick($event)">Hide</button>
-    <button class="button-row-item button" id="block" (click)="onClick($event)">Block</button>
-    <button [disabled]="notEnoughEnergy" class="button-row-item button" id="brew" (click)="brew()">Brew</button>
-  </div>
-  <div class="player-bars">
-    <progress id="gaugebar" [value]="gauge" max="50"></progress>
-    <progress id="playerhealth" [value]="playerHealth" max="100"></progress>
+  <div class="player-actions">
+    <div class="player-bars">
+      <label for="gaugebar" class="front label playerlabel">Gauge:</label>
+      <progress class="gaugebar" id="gaugebar" [value]="gauge" max="30"></progress><br>
+      <label for="playerhealth" class="front label playerlabel">Health:</label>
+      <progress class="healthbar" id="playerhealth" [value]="playerHealth" max="100"></progress>
+    </div>
+    <div class="button-row">
+      <button [disabled]="!this.notEnoughEnergy" class="button-row-item game-button" id="attack" (click)="onClick($event)">Attack</button>
+      <button [disabled]="!this.notEnoughEnergy" class="button-row-item game-button" id="hide" (click)="onClick($event)">Hide</button>
+      <button [disabled]="!this.notEnoughEnergy" class="button-row-item game-button" id="block" (click)="onClick($event)">Block</button>
+      <button [disabled]="this.notEnoughEnergy" class="button-row-item game-button brew" id="brew" (click)="brew()">Brew</button>
+    </div>
   </div>
 </div>

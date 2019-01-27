@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class StoryService {
 
-  msgCounter = 4;
+  msgCounter = 7;
   dialogIsOpen = false;
 
   constructor(

@@ -1,10 +1,11 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { StoryService } from '../../services/story.service';
+import { NewsService } from '../../services/news.service';
 
 const BOSS_HEALTH = 3;
-const BOSS_LEVELS = [2,4,5];
+const BOSS_LEVELS = [2,3,4];
 const PLAYER_HEALTH = 100;
-const GAUGE_LIMIT = 50;
+const GAUGE_LIMIT = 30;
 
 @Component({
   selector: 'app-teapot',
@@ -27,13 +28,23 @@ export class TeapotComponent implements AfterViewInit {
   rageOffset;
   pot;
 
+  win = false;
+  lost = false;
+  go = true;
+
+  tip1;
+  tip2;
+  tip3;
+  tip4;
+
   gauge = 0;
 
   playerHealth = PLAYER_HEALTH;
   notEnoughEnergy = true;
   correctReact = false;
 
-  constructor(private story: StoryService) { }
+  constructor(private story: StoryService,
+  private news: NewsService) { }
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas');
@@ -51,7 +62,7 @@ export class TeapotComponent implements AfterViewInit {
     this.pot = new Image();
     this.setBossSprite();
     this.teapotHealth = BOSS_HEALTH;
-    this.teapotRage = [2,4,5];
+    this.teapotRage = BOSS_LEVELS;
     this.rageOffset = this.teapotRage.pop();
 
     this.playerHealth = PLAYER_HEALTH;
@@ -59,13 +70,48 @@ export class TeapotComponent implements AfterViewInit {
     this.gauge = 0;
     this.notEnoughEnergy = true;
 
+    this.tip1 = false;
+    this.tip2 = false;
+    this.tip3 = false;
+    this.tip4 = false;
+
     this.resize();
 
     this.drawBoss();
 
     window.addEventListener('resize', this.resize);
+  }
+
+  restart() {
+    this.win = false;
+    this.lost = false;
+    this.playerHealth = PLAYER_HEALTH;
+    this.teapotHealth = BOSS_HEALTH;
+    this.gauge = 0;
+
+    this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    this.lastTick = Date.now();
+    this.time = 0;
+
+    this.resize();
+
+    this.notEnoughEnergy = true;
+
+    this.teapotRage = BOSS_LEVELS;
+    this.rageOffset = this.teapotRage.pop();
 
     requestAnimationFrame(() => { this.loop(); });
+
+  }
+
+  start() {
+    this.go = false;
+    this.lastTick = Date.now();
+    requestAnimationFrame(() => { this.loop(); });
+  }
+
+  continue() {
+    this.story.openNextStoryMsg();
   }
 
   resize() {
@@ -102,6 +148,23 @@ export class TeapotComponent implements AfterViewInit {
 
     if(this.gauge >= GAUGE_LIMIT) {
       this.notEnoughEnergy = false;
+    } else {
+      this.notEnoughEnergy = true;
+    }
+
+    if(this.win){
+      return;
+    }
+
+    if(this.teapotHealth == 0){
+      this.teapotAction = 'defeat';
+      this.setBossSprite();
+      this.win = true;
+    }
+
+    if(this.playerHealth <= 0){
+      this.lost = true;
+      return;
     }
 
     requestAnimationFrame(() => this.loop());
@@ -122,20 +185,23 @@ export class TeapotComponent implements AfterViewInit {
         this.gauge++;
         this.correctReact = true;
       } else if (this.gauge > 4){
-        this.gauge -= 4;
-        this.playerHealth -= 4;
+        this.gauge -= 2;
+        this.playerHealth -= 2;
       } else {
-        this.playerHealth -= 8;
+        this.playerHealth -= 5;
+        if (!this.tip4) {
+          this.tip4 = true;
+        }
       }
     }
   }
 
   tickBoss() {
     let switcher = Math.round((Math.random()*3) + this.rageOffset)*1000;
-    if (this.time > switcher) {
+    if (this.time > switcher && this.teapotAction != 'disabled') {
       this.switchAction();
       if(!this.correctReact){
-        this.playerHealth -= 10;
+        this.playerHealth -= 5;
       }
       this.time = 0;
     }
@@ -143,12 +209,11 @@ export class TeapotComponent implements AfterViewInit {
   }
 
   brew() {
-    this.teapotHealth--;
-    this.teapotRage = this.rageOffset.pop();
-    this.notEnoughEnergy = true;
+    if(this.teapotHealth > 0){
+      this.teapotHealth--;
+    }
+    this.rageOffset = this.teapotRage.pop();
     this.gauge = 0;
-    this.switchAction();
-    this.drawBoss();
   }
 
   switchAction() {
@@ -176,6 +241,6 @@ export class TeapotComponent implements AfterViewInit {
   }
 
   drawBoss() {
-    this.ctx.drawImage(this.pot, 0, 0, this.canvasHeight*16/9, this.canvasHeight);
+    this.ctx.drawImage(this.pot, (this.canvasWidth-this.canvasHeight*16/9)/2, 0, this.canvasHeight*16/9, this.canvasHeight);
   }
 }
