@@ -1,6 +1,8 @@
 <div class="outer">
 	<div mat-dialog-content class="content">
-		{{ data }}
+		<div *ngFor="let content of data">
+			{{ content }}
+		</div>
 	</div>
 	<div mat-dialog-actions class="button-container">
 		 <button mat-button [mat-dialog-close] cdkFocusInitial class="button">Ok</button>

@@ -10,5 +10,5 @@ export class StoryDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<StoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string) {}
+    @Inject(MAT_DIALOG_DATA) public data: string[]) {}
 }
