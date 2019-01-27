@@ -1,4 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { StoryService } from '../../services/story.service';
 
 const BOSS_HEALTH = 3;
 const BOSS_LEVELS = [2,4,5];
@@ -30,6 +31,7 @@ export class TeapotComponent implements AfterViewInit {
 
   playerHealth = PLAYER_HEALTH;
   notEnoughEnergy = true;
+  correctReact = false;
 
   constructor(private story: StoryService) { }
 
@@ -98,7 +100,9 @@ export class TeapotComponent implements AfterViewInit {
 
     this.tickBoss();
 
-    console.log(this.time);
+    if(this.gauge >= GAUGE_LIMIT) {
+      this.notEnoughEnergy = false;
+    }
 
     requestAnimationFrame(() => this.loop());
   }
@@ -108,12 +112,15 @@ export class TeapotComponent implements AfterViewInit {
     if(this.gauge <= GAUGE_LIMIT){
       if(id == 'hide' && this.teapotAction == 'steam'){
         this.gauge++;
+        this.correctReact = true;
       } else
       if(id == 'attack' && this.teapotAction == 'block'){ //throw cookie
         this.gauge++;
+        this.correctReact = true;
       } else
       if(id == 'block' && this.teapotAction == 'water'){
         this.gauge++;
+        this.correctReact = true;
       } else if (this.gauge > 4){
         this.gauge -= 4;
         this.playerHealth -= 4;
@@ -127,6 +134,9 @@ export class TeapotComponent implements AfterViewInit {
     let switcher = Math.round((Math.random()*3) + this.rageOffset)*1000;
     if (this.time > switcher) {
       this.switchAction();
+      if(!this.correctReact){
+        this.playerHealth -= 10;
+      }
       this.time = 0;
     }
     this.drawBoss();
@@ -135,6 +145,8 @@ export class TeapotComponent implements AfterViewInit {
   brew() {
     this.teapotHealth--;
     this.teapotRage = this.rageOffset.pop();
+    this.notEnoughEnergy = true;
+    this.gauge = 0;
     this.switchAction();
     this.drawBoss();
   }
@@ -144,6 +156,7 @@ export class TeapotComponent implements AfterViewInit {
     let nextActionIndex = Math.random()*2 + 1;
     let newIndex = (nextActionIndex + currentIndex) % 3;
     this.teapotAction = this.teapotStates[Math.floor(newIndex)];
+    this.correctReact = false;
     this.setBossSprite();
   }
 
