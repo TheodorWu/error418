@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { environment } from 'src/environments/environment';
+import { NewsService } from 'src/app/services/news.service';
 
 
 const FRICTION = 0.00015;
@@ -71,7 +72,7 @@ export class CookiesComponent implements AfterViewInit {
   declineButtonDisabled: boolean;
 
 
-  constructor(private story: StoryService) {}
+  constructor(private story: StoryService, private news: NewsService) {}
 
   ngAfterViewInit() {
     this.canvas = document.getElementById('canvas');
@@ -439,6 +440,8 @@ export class CookiesComponent implements AfterViewInit {
   }
 
   next() {
+    this.news.showNewsMsg('Petition to organise a cookie delting championship',
+    'Gaming community is excited by new fun ways to customize settings');
     this.story.openNextStoryMsg();
   }
 }
