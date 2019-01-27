@@ -28,8 +28,14 @@ export class NewsService {
     });
   }
 
+  showInfoMsg(title: string, txt: string) {
+    this.toastr.info(txt, title, {
+      timeOut: 2000,
+    });
+  }
+
   showNextNews() {
-    if (this.toastr.currentlyActive > 0){
+    if (this.toastr.currentlyActive > 0) {
       return;
     }
     if (this.currentNewsCounter < NEWS_TXT.length) {
